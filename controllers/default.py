@@ -17,7 +17,6 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    response.flash = T("Hello World")
     return dict(message=T('Welcome to web2py!'))
 
 
@@ -37,6 +36,8 @@ def user():
     to decorate functions that need access control
     also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
     """
+    if (request.args(0) == 'profile' or request.args(0) == 'register') and request.post_vars.city:
+        request.post_vars.city = request.vars.city = request.post_vars.city.lower()
     return dict(form=auth())
 
 

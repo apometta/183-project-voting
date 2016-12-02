@@ -53,3 +53,7 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2016-12-01T19:31:41.346000
+ALTER TABLE auth_user ADD city CHAR(512);
+success!
+success!
