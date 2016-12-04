@@ -29,7 +29,8 @@ response.google_analytics_id = None
 # ----------------------------------------------------------------------------------------------------------------------
 
 response.menu = [
-    (T('Home'), False, URL('default', 'index'), [])
+    (T('Home'), False, URL('default', 'index'), []),
+    (T('Check if you are registered'), False, 'http://www.sos.ca.gov/elections/registration-status/', [])
 ]
 
 if "auth" in locals():

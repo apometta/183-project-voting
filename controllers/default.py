@@ -21,7 +21,24 @@ def index():
 
 #returns all election data along with user information if there is a user logged in
 def get_data():
-    return dict()
+    national = []
+    state_races = []
+    state_measures = []
+    local_races = []
+    local_measures = []
+    current_user = auth.user.email if auth.user is not None else None
+    if current_user is not None:
+        userLocation = db(db.auth_user.id == auth.user_id).select(db.auth.city).first()
+        local_races = db(db.races.locationName == userLocation).select()
+        local_measures = db(db.measures.locationName == userLocation).select()
+    return response.json(dict(
+        current_user = current_user,
+        national = national,
+        state_races = state_races,
+        state_measures = state_measures,
+        local_races = local_races,
+        local_measures = local_measures
+    ))
 
 #used to save a user's voting decisions
 @auth.requires_login()
@@ -46,6 +63,9 @@ def user():
     """
     if (request.args(0) == 'profile' or request.args(0) == 'register') and request.post_vars.city:
         request.post_vars.city = request.vars.city = request.post_vars.city.lower()
+        #check if the user is entering a valid city/county
+        if db(db.races.locationName == request.vars.city).select().first() is None:
+            request.post_vars.city = request.vars.city = ''
     return dict(form=auth())
 
 

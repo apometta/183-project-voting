@@ -10,6 +10,10 @@ var app = function() {
         //fetches election data and user information
     };
 
+    self.save_votes = function() {
+        //sends user selected positions to db
+    };
+
     // Complete as needed.
     self.vue = new Vue({
         el: "#vue-div",
@@ -25,10 +29,12 @@ var app = function() {
         },
         methods: {
             get_data: self.get_data,
+            save_votes: self.save_votes,
         }
 
     });
 
+    self.get_data();
     $("#vue-div").show();
 
     return self;

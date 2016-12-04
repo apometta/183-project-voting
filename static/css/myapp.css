@@ -30,3 +30,11 @@
     word-wrap: break-word;
     margin: 5px;
 }
+
+.navbar-fixed-top{
+    background: mediumblue;
+}
+
+.footer{
+    background: mediumblue;
+}
