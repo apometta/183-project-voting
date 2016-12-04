@@ -57,3 +57,11 @@ timestamp: 2016-12-01T19:31:41.346000
 ALTER TABLE auth_user ADD city CHAR(512);
 success!
 success!
+timestamp: 2016-12-03T16:49:29.033000
+CREATE TABLE votes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_email CHAR(512),
+    vote_topic CHAR(512),
+    vote_selection CHAR(512)
+);
+success!

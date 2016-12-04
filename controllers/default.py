@@ -17,8 +17,16 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    return dict(message=T('Welcome to web2py!'))
+    return dict()
 
+#returns all election data along with user information if there is a user logged in
+def get_data():
+    return dict()
+
+#used to save a user's voting decisions
+@auth.requires_login()
+def update_votes():
+    return dict()
 
 def user():
     """

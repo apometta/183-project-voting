@@ -1,0 +1,30 @@
+{{extend 'layout.html'}}
+
+<html>
+    <head>
+        <style>
+        .officebox{
+            border: 9px solid red;
+            height: 100px;
+            width: 100px;
+            background-color: #3300FF;
+            opacity: .5;
+        }
+        </style>
+        
+    </head>
+    <body>
+            <div id=header>
+            </div>
+            
+            {{for scope in range(2):}}
+                <div id=federal>
+                    {{for candidate in range(2):}}
+                        <div class=officebox>
+                        dddssfdsfsadfdsfffatest this our this is atest this a thing that workds f
+                        </div>
+                        {{pass}}
+                </div>
+            {{pass}}
+    </body>
+</html>

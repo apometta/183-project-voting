@@ -1,52 +1,44 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
 
-{{block header}}
-    <header class="container-fluid background">
-      <div class="jumbotron text-center">
-        {{if response.title:}}
-        <h1>{{=response.title}}
-          <small>{{=response.subtitle or ''}}</small></h1>
-        {{pass}}
-      </div>
-    </header>
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script>
+    var data_url = "{{=URL('default', 'get_data')}}";
+    var user_votes_url = "{{=URL('default', 'update_votes')}}";
+</script>
 {{end}}
 
-{{if 'message' in globals():}}
-<h2>{{=message}}</h2>
-<p class="lead">{{=T('How did you get here?')}}</p>
-<ol>
-  <li>{{=T('You are successfully running web2py')}}</li>
-  <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
-  <li>{{=XML(T('Which called the function %s located in the file %s',
-    (A(request.function+'()',_href='#'),
-    A('web2py/applications/%(application)s/controllers/%(controller)s.py' % request,
-    _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
-  <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
-    A('web2py/applications/%(application)s/views/%(controller)s/index.html' % request,
-    _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
-  <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
-</ol>
-{{elif 'content' in globals():}}
-{{=content}}
-{{else:}}
-{{=BEAUTIFY(response._vars)}}
-{{pass}}
+<div class="main_content">
+    <div id="vue-div" class="display:none">
+        <div class="voting_area">
+            <div v-for="item in federal" class = "voting_box">
+                <div class="text vote_title">
 
-{{block right_sidebar}}
-<div class="panel panel-info">
-  <div class="panel-heading"><h3 class="panel-title"><a class="btn-block"
-      href="{{=URL('admin','default','index')}}">
-      <i class="glyphicon glyphicon-cog"></i>
-      {{=T("admin")}}
-    </a></h3></div>
-  <div class="panel-body">
-    {{=T("Don't know what to do?")}}
-  </div>
-  <ul class="list-group">
-    <li class="list-group-item">{{=A(T("Online examples"), _href=URL('examples','default','index'))}}</li>
-    <li class="list-group-item"><a href="http://web2py.com">web2py.com</a></li>
-    <li class="list-group-item"><a href="http://web2py.com/book">{{=T('Documentation')}}</a></li>
-  </ul>
+                </div>
+                <div class="text vote_info">
+
+                </div>
+                <div class ="vote_selection">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-{{end}}
+
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>
+
+<div class="voting_area">
+    <div class="voting_box">
+        <div class="text vote_title">
+            President Asshole
+        </div>
+        <div class="text vote_info">
+            MAGAMAGAMAGAMAGAMAGAMAGA
+        </div>
+        <div class="vote_selection">
+            <input type="radio" name="vote1" value="Yes"> YES<br>
+            <input type="radio" name="vote1" value="No"> no, im a cuck<br>
+        </div>
+    </div>
+</div>
