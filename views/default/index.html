@@ -11,24 +11,56 @@
 <div class="main_content">
     <div id="vue-div" class="display:none">
         <div class="voting_area">
-            <div v-for="item in state_elections" class = "voting_box">
+            <div v-for="item in state_elections" class="voting_box">
                 <div class="text vote_title">
                     ${item.office}
                 </div>
-                <div class ="vote_selection">
+                <div class="vote_selection">
                     <div v-for="person in item.candidates" class="vote_option">
                         <input type="radio" :name="item.office" :value="person"> ${person}
                     </div>
                 </div>
             </div>
-            <div v-for="item in local_elections" class = "voting_box">
+            <div v-for="item in local_elections" class="voting_box">
                 <div class="text vote_title">
                     ${item.office}
                 </div>
-                <div class ="vote_selection">
+                <div v-if="item.vacancies > 1" class="text vote_info">
+                    Please pick ${item.vacancies} for ${item.office}.
+                </div>
+                <div class="vote_selection">
                     <div v-for="person in item.candidates" class="vote_option">
-                        <input type="radio" :name="item.office" :value="person"> ${person}
+                        <span v-if="item.vacancies > 1">
+                            <input type="radio" :name="item.office" :value="person"> ${person}
+                        </span>
+                        <span v-else>
+                            <input type="checkbox" :name="item.office" :value="person"> ${person}
+                        </span>
                     </div>
+                </div>
+            </div>
+            <div v-for="item in state_props" class="voting_box">
+                <div class="text vote_title">
+                    ${item.letter}
+                </div>
+                <div class="text vote_info">
+                    ${item.question}
+                </div>
+                <div class="vote_selection">
+                    <input type="radio" :name="item.letter" value="yes"> Yes
+                    <input type="radio" :name="item.letter" value="no"> No
+                </div>
+            </div>
+            <div v-for="item in local_props" class="voting_box">
+                <div class="text vote_title">
+                    ${item.letter}
+                </div>
+                <div class="text vote_info">
+                    ${item.question}
+                </div>
+                <div class="vote_selection">
+                    <input type="radio" :name="item.letter" value="yes"> Yes
+                    <input type="radio" :name="item.letter" value="no"> No
                 </div>
             </div>
         </div>

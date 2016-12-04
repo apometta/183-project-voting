@@ -28,7 +28,7 @@ def get_data():
     local_measures = []
     current_user = auth.user.email if auth.user is not None else None
     if current_user is not None:
-        userLocation = db(db.auth_user.id == auth.user_id).select(db.auth.city).first()
+        userLocation = db(db.auth_user.id == auth.user_id).select(db.auth_user.city).first()
         local_races = db(db.races.locationName == userLocation).select()
         local_measures = db(db.measures.locationName == userLocation).select()
     return response.json(dict(
