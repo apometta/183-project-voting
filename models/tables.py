@@ -29,5 +29,6 @@ db.define_table('races',
      Field('locationName', default=None),
      Field('office'), #e.g. City Council, Port Commisioner, etc.
      Field('vacancies', default=1), #number of candidates to be voted for, e.g. 4 city council members
-     Field('candidates', 'list:string'), #list of candidates.
+     Field('name_list', 'list:string'), #list of candidate names
+     Field('occupation_list', 'list:string') #list of candidate occupations
 )
