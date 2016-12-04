@@ -11,15 +11,24 @@
 <div class="main_content">
     <div id="vue-div" class="display:none">
         <div class="voting_area">
-            <div v-for="item in federal" class = "voting_box">
+            <div v-for="item in state_elections" class = "voting_box">
                 <div class="text vote_title">
-
-                </div>
-                <div class="text vote_info">
-
+                    ${item.office}
                 </div>
                 <div class ="vote_selection">
-
+                    <div v-for="person in item.candidates" class="vote_option">
+                        <input type="radio" :name="item.office" :value="person"> ${person}
+                    </div>
+                </div>
+            </div>
+            <div v-for="item in local_elections" class = "voting_box">
+                <div class="text vote_title">
+                    ${item.office}
+                </div>
+                <div class ="vote_selection">
+                    <div v-for="person in item.candidates" class="vote_option">
+                        <input type="radio" :name="item.office" :value="person"> ${person}
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,18 +36,3 @@
 </div>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>
-
-<div class="voting_area">
-    <div class="voting_box">
-        <div class="text vote_title">
-            President Asshole
-        </div>
-        <div class="text vote_info">
-            MAGAMAGAMAGAMAGAMAGAMAGA
-        </div>
-        <div class="vote_selection">
-            <input type="radio" name="vote1" value="Yes"> YES<br>
-            <input type="radio" name="vote1" value="No"> no, im a cuck<br>
-        </div>
-    </div>
-</div>

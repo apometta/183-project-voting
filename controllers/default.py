@@ -22,8 +22,8 @@ def index():
 #returns all election data along with user information if there is a user logged in
 def get_data():
     national = []
-    state_races = []
-    state_measures = []
+    state_races = db(db.races.election_level == 0).select()
+    state_measures = db(db.measures.election_level == 0).select()
     local_races = []
     local_measures = []
     current_user = auth.user.email if auth.user is not None else None

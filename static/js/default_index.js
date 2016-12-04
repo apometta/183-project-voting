@@ -8,6 +8,14 @@ var app = function() {
 
     self.get_data = function() {
         //fetches election data and user information
+        $.getJSON(data_url, function(data) {
+            self.vue.current_user = data.current_user;
+            self.vue.federal = data.national;
+            self.vue.state_elections = data.state_races;
+            self.vue.state_props = data.state_measures;
+            self.vue.local_elections = data.local_races;
+            self.vue.local_props = data.local_measures;
+        })
     };
 
     self.save_votes = function() {
@@ -26,6 +34,7 @@ var app = function() {
             state_props: [],
             local_elections: [],
             local_props: [],
+            user_votes: [],
         },
         methods: {
             get_data: self.get_data,
