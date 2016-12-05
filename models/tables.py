@@ -23,7 +23,7 @@ db.define_table('measures',
 #A "candidate" has the following information attatched to them: name (first and last), occupation, and perhaps party.
 #A separate database isn't necessary to hold this imo, the candidates could just be a 2D array, i.e. the outer array
 #('candidates') holds each candidate, and each candidate array hols name, occupation, party
-db.define_table('races',
+db.define_table('candidates',
      Field('election_level', default=0), #same standard as in measures
      Field('county', default=None),
      Field('locationName', default=None),
