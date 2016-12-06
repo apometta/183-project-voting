@@ -6,14 +6,27 @@ var app = function() {
     var self = {};
     Vue.config.silent = false; // show all warnings
 
+    self.format_office_str = function(off_str){
+        var new_str = off_str;
+        for (var i = 0; i < off_str.length; ++i){
+            if (i == 0 || off_str.charAt(i - 1) == ' ' || off_str.charAt(i - 1) == '-'){
+                var pre = new_str.substr(0, i);
+                var mid = new_str.charAt(i).toUpperCase();
+                var post = new_str.substr(i+1);
+                new_str = pre + mid + post;
+            }
+        }
+        return new_str;
+    }
+
+    //function for formatting string list into an actual list of strings
     self.format_str_list = function(strlist) {
-        console.log("strlist = " + strlist)
-        var rawstr = strlist[0];
-        rawstr = rawstr.replace("'", "");
-        rawstr = rawstr.replace("\"", "");
+        var rawstr = strlist;
+        rawstr = rawstr.replace(/\|/g, "");
+        rawstr = rawstr.replace(/'/g, "");
+        rawstr = rawstr.replace(/\"/g, "");
         rawstr = rawstr.replace(", ", ",");
         var rawstrlist = rawstr.split(",");
-        console.log("rawstrlist = " + rawstrlist);
         return rawstrlist;
     }
 
@@ -102,6 +115,7 @@ var app = function() {
             contains_vote: self.contains_vote,
             toggle_vote: self.toggle_vote,
             format_str_list: self.format_str_list,
+            format_office_str: self.format_office_str,
         }
 
     });

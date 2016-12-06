@@ -11,44 +11,44 @@
 <div class="main_content">
     <div id="vue-div" class="display:none">
         <div class="top_area">
-            <img src="/FinalProject/static/images/Flag_of_the_United_States.svg.png" alt="USA Flag" align="left"/>
+            <img src="/Voting_for_Dummies/static/images/Flag_of_the_United_States.svg.png" alt="USA Flag" align="left"/>
             <button v-if="current_user" class="btn btn-danger btn-sm" v-on:click="save_votes()">
                     Save choices!
             </button>
-            <img src="/FinalProject/static/images/Flag_of_California.svg.png" alt="California Flag" align="right"/>
+            <img src="/Voting_for_Dummies/static/images/Flag_of_California.svg.png" alt="California Flag" align="right"/>
         </div>
         <div class="voting_area">
             <div v-for="item in state_elections" class="voting_box">
                 <div class="text vote_title">
-                    ${item.office}
+                    ${format_office_str(item.office)}
                 </div>
                 <div class="vote_selection">
-                    <div v-for="person in item.name_list" class="vote_option">
-                        <input type="radio" :name="item.office" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" v-model="user_election_votes[item.id]"> ${person}
+                    <div v-for="person in format_str_list(item.name_list)" class="vote_option">
+                        <input type="radio" :name="format_office_str(item.office)" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" v-model="user_election_votes[item.id]"> ${person}
                     </div>
                 </div>
             </div>
             <div v-for="item in local_elections" class="voting_box">
                 <div class="text vote_title">
-                    ${item.office}
+                    ${format_office_str(item.office)}
                 </div>
                 <div v-if="item.vacancies > 1" class="text vote_info">
                     Please pick ${item.vacancies} for ${item.office}.
                 </div>
                 <div class="vote_selection">
-                    <div v-for="person in item.name_list" class="vote_option">
+                    <div v-for="person in format_str_list(item.name_list)" class="vote_option">
                         <span v-if="item.vacancies == 1">
-                            <input type="radio" :name="item.office" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" v-model="user_election_votes[item.id]"> ${person}
+                            <input type="radio" :name="format_office_str(item.office)" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" v-model="user_election_votes[item.id]"> ${person}
                         </span>
                         <span v-else>
-                            <input type="checkbox" :name="item.office" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" @click="toggle_vote(item.id, person)"> ${person}
+                            <input type="checkbox" :name="format_office_str(item.office)" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" @click="toggle_vote(item.id, person)"> ${person}
                         </span>
                     </div>
                 </div>
             </div>
             <div v-for="item in state_props" class="voting_box">
                 <div class="text vote_title">
-                    ${item.letter}
+                    ${"Proposition " + item.letter}
                 </div>
                 <div class="text vote_info">
                     ${item.question}
@@ -60,7 +60,7 @@
             </div>
             <div v-for="item in local_props" class="voting_box">
                 <div class="text vote_title">
-                    ${item.letter}
+                    ${"Proposition " + item.letter}
                 </div>
                 <div class="text vote_info">
                     ${item.question}

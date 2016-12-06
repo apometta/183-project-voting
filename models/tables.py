@@ -28,7 +28,7 @@ db.define_table('measures',
     Field('locationName', default=None), #name of county/city/school/CSD.
     Field('letter'), #e.g. prop E or prop Z.  can be numbers for statewide but still a string
     Field('topic'), #e.g. Governance: Organization, or something like that
-    Field('question'), #"Shall the county of ...?"
+    Field('question', length=999), #"Shall the county of ...?"
 )
 
 #A "candidate" has the following information attatched to them: name (first and last), occupation, and perhaps party.
@@ -40,8 +40,8 @@ db.define_table('races',
      Field('locationName', default=None),
      Field('office'), #e.g. City Council, Port Commisioner, etc.
      Field('vacancies', default=1), #number of candidates to be voted for, e.g. 4 city council members
-     Field('name_list', 'list:string'), #list of candidate names
-     Field('occupation_list', 'list:string') #list of candidate occupations
+     Field('name_list'), #list of candidate names
+     Field('occupation_list') #list of candidate occupations
 )
 
 db.define_table('votes_races',
