@@ -1,20 +1,32 @@
 .voting_area {
     text-align: center;
+    width: 100%;
 }
 
 div.main_content {
     padding: 20px;
 }
 
+.container {margin-right:-20px}
+.container>.quarter, .container>.half, .container>.third, .container>.twothirds, .container>.threequarters {display:inline-block; padding: 0 20px 0 0; vertical-align:top}
+.container>.fill{display: inline-block; padding-right: 20px; margin-right:-10px}
+.container img, .container video {max-width:100%}
+.max900 {margin-left:auto; margin-right:auto}
+
 .voting_box{
+    vertical-align:top;
     display: inline-block;
-    width: 30%;
-    height: 400px;
+    width: 32%;
+    height: 250px;
     border-color: grey;
     border-style: solid;
     border-width: 5px;
     border-radius: 20px;
     margin: 5px;
+}
+
+.tall{
+    height: 400px;
 }
 
 .vote_title{
@@ -31,12 +43,25 @@ div.main_content {
 }
 
 .flag_images{
-    height: 150px;
-    weidth: 80px;
+    height: 160px;
+}
+
+.flag_area{
+    vertical-align:top;
+    display: inline-block;
+    width: 30%;
 }
 
 .top_area{
+    vertical-align:top;
+    display: inline-block;
+    width: 100%;
     padding: 10px;
+}
+
+.top_buttons{
+    display: inline-block;
+    width: 40%;
 }
 
 .text{

@@ -11,13 +11,20 @@
 <div class="main_content">
     <div id="vue-div" class="display:none">
         <div class="top_area">
-            <img src="/Voting_for_Dummies/static/images/Flag_of_the_United_States.svg.png" alt="USA Flag" align="left"/>
-            <button v-if="current_user" class="btn btn-danger btn-sm" v-on:click="save_votes()">
-                    Save choices!
-            </button>
-            <img src="/Voting_for_Dummies/static/images/Flag_of_California.svg.png" alt="California Flag" align="right"/>
-        </div>
+            <div class="left flag_area">
+                <img src="/FinalProject/static/images/Flag_of_the_United_States.svg.png" alt="USA Flag" class="flag_images"/>
+            </div>
+            <div class="center top_buttons">
+                <button v-if="current_user" class="btn btn-danger btn-sm" v-on:click="save_votes()">
+                        Save choices!
+                </button>
+            </div>
+            <div class="right flag_area">
+                <img src="/FinalProject/static/images/Flag_of_California.svg.png" alt="California Flag" class="flag_images"/>
+            </div>
+        </div> <br>
         <div class="voting_area">
+            <h3>Statewide Races</h3>
             <div v-for="item in state_elections" class="voting_box">
                 <div class="text vote_title">
                     ${format_office_str(item.office)}
@@ -27,7 +34,8 @@
                         <input type="radio" :name="format_office_str(item.office)" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" v-model="user_election_votes[item.id]"> ${person}
                     </div>
                 </div>
-            </div>
+            </div> <br>
+            <h3>Local Races</h3>
             <div v-for="item in local_elections" class="voting_box">
                 <div class="text vote_title">
                     ${format_office_str(item.office)}
@@ -45,8 +53,9 @@
                         </span>
                     </div>
                 </div>
-            </div>
-            <div v-for="item in state_props" class="voting_box">
+            </div> <br>
+            <h3>Statewide Propositions</h3>
+            <div v-for="item in state_props" class="tall voting_box">
                 <div class="text vote_title">
                     ${"Proposition " + item.letter}
                 </div>
@@ -54,11 +63,12 @@
                     ${item.question}
                 </div>
                 <div class="vote_selection">
-                    <input type="radio" :name="item.letter" value="yes" :checked="(user_prop_votes[item.id] == yes) ? yes : ''" v-model="user_prop_votes[item.id]"> Yes
-                    <input type="radio" :name="item.letter" value="no" :checked="(user_prop_votes[item.id] == no) ? no : ''" v-model="user_prop_votes[item.id]"> No
+                    <input type="radio" :name="item.letter" value="yes" :checked="(user_prop_votes[item.id] == 'yes') ? 'yes' : ''" v-model="user_prop_votes[item.id]"> Yes
+                    <input type="radio" :name="item.letter" value="no" :checked="(user_prop_votes[item.id] == 'no') ? 'no' : ''" v-model="user_prop_votes[item.id]"> No
                 </div>
-            </div>
-            <div v-for="item in local_props" class="voting_box">
+            </div> <br>
+            <h3>Local Propositions</h3>
+            <div v-for="item in local_props" class="tall voting_box">
                 <div class="text vote_title">
                     ${"Proposition " + item.letter}
                 </div>
@@ -66,8 +76,8 @@
                     ${item.question}
                 </div>
                 <div class="vote_selection">
-                    <input type="radio" :name="item.letter" value="yes" :checked="(user_prop_votes[item.id] == yes) ? yes : ''" v-model="user_prop_votes[item.id]"> Yes
-                    <input type="radio" :name="item.letter" value="no" :checked="(user_prop_votes[item.id] == no) ? no : ''" v-model="user_prop_votes[item.id]"> No
+                    <input type="radio" :name="item.letter" value="yes" :checked="(user_prop_votes[item.id] == 'yes') ? 'yes' : ''" v-model="user_prop_votes[item.id]"> Yes
+                    <input type="radio" :name="item.letter" value="no" :checked="(user_prop_votes[item.id] == 'no') ? 'no' : ''" v-model="user_prop_votes[item.id]"> No
                 </div>
             </div>
         </div>
