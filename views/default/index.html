@@ -36,7 +36,9 @@
                     </div>
                 </div>
             </div> <br>
+            {{if auth.user_id:}}
             <h3>Local Races</h3>
+            {{pass}}
             <div v-for="item in local_elections" class="voting_box">
                 <div class="text vote_title">
                     ${format_office_str(item.office)}
@@ -68,7 +70,9 @@
                     <input type="radio" :name="item.letter" value="no" :checked="(user_prop_votes[item.id] == 'no') ? 'no' : ''" v-model="user_prop_votes[item.id]"> No
                 </div>
             </div> <br>
+            {{if auth.user_id:}}
             <h3>Local Propositions</h3>
+            {{pass}}
             <div v-for="item in local_props" class="tall voting_box">
                 <div class="text vote_title">
                     ${"Proposition " + item.letter}
