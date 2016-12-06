@@ -44,7 +44,7 @@
                     Please pick ${item.vacancies} for ${item.office}.
                 </div>
                 <div class="vote_selection">
-                    <div v-for="person in format_str_list(item.name_list)" class="vote_option">
+                    <div v-for="person in format_str_list_two(item.name_list, item.occupation_list)" class="vote_option">
                         <span v-if="item.vacancies == 1">
                             <input type="radio" :name="format_office_str(item.office)" :value="person" :checked="(contains_vote(item.id, person)) ? person : ''" v-model="user_election_votes[item.id]"> ${person}
                         </span>
