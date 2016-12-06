@@ -90,13 +90,13 @@ ssS'question'
 p24
 (dp25
 g4
-I999
+I1300
 sg5
 I00
 sg6
 I7
 sg7
-S'CHAR(999)'
+S'CHAR(1300)'
 p26
 sg9
 I00
