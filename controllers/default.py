@@ -96,6 +96,23 @@ def user():
                 request.post_vars.city = request.vars.city = ''
     return dict(form=auth())
 
+@auth.requires_login()
+def print_page():
+    import json
+    voting_choices = []
+    election_votes = json.loads(db(db.votes_races.user_email == auth.user.email).select(db.votes_races.votes_json).first().votes_json)
+    for idx, vote in enumerate(election_votes):
+        if vote is not None:
+            race = db(db.races.id == idx).select().first()
+            voting_choices.append(race.office + ": " + vote)
+
+    measure_votes = json.loads(db(db.votes_measures.user_email == auth.user.email).select(db.votes_measures.votes_json).first().votes_json)
+    for idx, vote in enumerate(measure_votes):
+        if vote is not None:
+            race = db(db.measures.id == idx).select().first()
+            voting_choices.append(race.letter + ": " + vote)
+
+    return dict(voting_choices = voting_choices)
 
 @cache.action()
 def download():
