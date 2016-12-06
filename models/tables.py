@@ -1,12 +1,5 @@
 import datetime
 
-#user vote data
-db.define_table('votes',
-    Field('user_email'),
-    Field('vote_topic'),
-    Field('vote_selection'),
-)
-
 #CSD and school zone props might not be used if it is not feasible to determine which/if a person resides in one.
 #if it is easier a dummy string like "statewide" or "California" can be used for county/locationName, just change
 #the default to a string literal

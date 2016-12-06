@@ -31,8 +31,8 @@ def get_data():
     current_user = auth.user.email if auth.user is not None else None
     if current_user is not None:
         userLocation = db(db.auth_user.id == auth.user_id).select(db.auth_user.city).first().city
-        local_races = db(db.races.locationName == userLocation).select()
-        local_measures = db(db.measures.locationName == userLocation).select()
+        local_races = db((db.races.locationName == userLocation) & (db.races.election_level != 0)).select()
+        local_measures = db((db.measures.locationName == userLocation) & (db.measures.election_level != 0)).select()
         votes_races = db(db.votes_races.user_email == current_user).select()
         votes_measures = db(db.votes_measures.user_email == current_user).select()
     return response.json(dict(

@@ -6,28 +6,36 @@ var app = function() {
     var self = {};
     Vue.config.silent = false; // show all warnings
 
-    self.contains_vote = function(array, person) {
-      if (array == null){
-          return false;
-      }
-      else{
-          return array.includes(person);
-      }
+    //needed to check races because some can have multiple candidates selected
+    self.contains_vote = function(race_id, person) {
+        if (self.vue.user_election_votes[race_id] == null){
+            return false;
+        }
+        else{
+            if (typeof self.vue.user_election_votes[race_id] != "array" && typeof self.vue.user_election_votes[race_id] != "object") {
+                self.vue.user_election_votes[race_id] = [self.vue.user_election_votes[race_id]]
+            }
+            return self.vue.user_election_votes[race_id].includes(person);
+        }
     };
 
     //for local races that accept multiple candidates for a position
     self.toggle_vote = function(race_id, person) {
-        array = self.vue.user_election_votes[race_id];
-        console.log(array);
         if (self.vue.user_election_votes[race_id] == null){
             self.vue.user_election_votes[race_id] = [person];
         }
-        else if (!self.vue.user_election_votes[race_id].includes(person)){
-
-        }
-        else {
-            var idx = self.vue.user_election_votes[race_id].indexOf(person);
-
+        else{
+            if (typeof self.vue.user_election_votes[race_id] != "array" && typeof self.vue.user_election_votes[race_id] != "object") {
+                self.vue.user_election_votes[race_id] = [self.vue.user_election_votes[race_id]]
+            }
+            if (!self.vue.user_election_votes[race_id].includes(person)) {
+                self.vue.user_election_votes[race_id].push(person)
+            }
+            //toggle person off if they are already selected
+            else {
+                idx = self.vue.user_election_votes[race_id].indexOf(person);
+                self.vue.user_election_votes[race_id].splice(idx, 1)
+            }
         }
     };
 
