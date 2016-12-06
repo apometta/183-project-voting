@@ -92,7 +92,8 @@ def user():
         request.post_vars.city = request.vars.city = request.post_vars.city.lower()
         #check if the user is entering a valid city/county
         if db(db.races.locationName == request.vars.city).select().first() is None:
-            request.post_vars.city = request.vars.city = ''
+            if db(db.measures.locationName == request.vars.city).select().first() is None:
+                request.post_vars.city = request.vars.city = ''
     return dict(form=auth())
 
 
