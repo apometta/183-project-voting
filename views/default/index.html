@@ -10,9 +10,13 @@
 
 <div class="main_content">
     <div id="vue-div" class="display:none">
-        <button v-if="current_user" class="btn btn-danger btn-sm" v-on:click="save_votes()">
-                Save choices!
-        </button>
+        <div class="top_area">
+            <img src="/FinalProject/static/images/Flag_of_the_United_States.svg.png" alt="USA Flag" align="left"/>
+            <button v-if="current_user" class="btn btn-danger btn-sm" v-on:click="save_votes()">
+                    Save choices!
+            </button>
+            <img src="/FinalProject/static/images/Flag_of_California.svg.png" alt="California Flag" align="right"/>
+        </div>
         <div class="voting_area">
             <div v-for="item in state_elections" class="voting_box">
                 <div class="text vote_title">

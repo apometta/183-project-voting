@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+div.main_content {
+    padding: 20px;
+}
+
 .voting_box{
     display: inline-block;
     width: 30%;
@@ -24,6 +28,15 @@
 .vote_selection{
     text-align: left;
     display: inline-block;
+}
+
+.flag_images{
+    height: 150px;
+    weidth: 80px;
+}
+
+.top_area{
+    padding: 10px;
 }
 
 .text{
