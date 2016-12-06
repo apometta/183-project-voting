@@ -6,6 +6,17 @@ var app = function() {
     var self = {};
     Vue.config.silent = false; // show all warnings
 
+    self.format_str_list = function(strlist) {
+        console.log("strlist = " + strlist)
+        var rawstr = strlist[0];
+        rawstr = rawstr.replace("'", "");
+        rawstr = rawstr.replace("\"", "");
+        rawstr = rawstr.replace(", ", ",");
+        var rawstrlist = rawstr.split(",");
+        console.log("rawstrlist = " + rawstrlist);
+        return rawstrlist;
+    }
+
     //needed to check races because some can have multiple candidates selected
     self.contains_vote = function(race_id, person) {
         if (self.vue.user_election_votes[race_id] == null){
@@ -90,6 +101,7 @@ var app = function() {
             save_votes: self.save_votes,
             contains_vote: self.contains_vote,
             toggle_vote: self.toggle_vote,
+            format_str_list: self.format_str_list,
         }
 
     });
