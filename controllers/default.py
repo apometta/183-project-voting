@@ -104,6 +104,7 @@ def print_page():
     for idx, vote in enumerate(election_votes):
         if vote is not None:
             race = db(db.races.id == idx).select().first()
+            vote = ' '.join(vote)
             voting_choices.append(race.office + ": " + vote)
 
     measure_votes = json.loads(db(db.votes_measures.user_email == auth.user.email).select(db.votes_measures.votes_json).first().votes_json)

@@ -5,6 +5,7 @@
 <script>
     var data_url = "{{=URL('default', 'get_data')}}";
     var user_votes_url = "{{=URL('default', 'update_votes')}}";
+    var print_url = "{{=URL('default', 'print_page')}}";
 </script>
 {{end}}
 
@@ -18,7 +19,7 @@
                 <button v-if="current_user" class="btn btn-danger btn-sm" v-on:click="save_votes()">
                         Save choices!
                 </button>
-                <button v-if="current_user" class="btn btn-danger btn-sm" onclick="print_url">
+                <button v-if="current_user" class="btn btn-danger btn-sm" onclick="location.href='print_page'">
                         Print choices!
                 </button>
                 <h4 v-else>Login to save your votes!</h4>
