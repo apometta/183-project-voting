@@ -32,3 +32,13 @@ db.define_table('races',
      Field('name_list', 'list:string'), #list of candidate names
      Field('occupation_list', 'list:string') #list of candidate occupations
 )
+
+db.define_table('votes_races',
+    Field('user_email'),
+    Field('votes_json', 'text'), # Votes information, in json
+)
+
+db.define_table('votes_measures',
+    Field('user_email'),
+    Field('votes_json', 'text'), # Votes information, in json
+)

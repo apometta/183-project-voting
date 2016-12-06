@@ -26,23 +26,50 @@ def get_data():
     state_measures = db(db.measures.election_level == 0).select()
     local_races = []
     local_measures = []
+    votes_races = []
+    votes_measures = []
     current_user = auth.user.email if auth.user is not None else None
     if current_user is not None:
-        userLocation = db(db.auth_user.id == auth.user_id).select(db.auth_user.city).first()
+        userLocation = db(db.auth_user.id == auth.user_id).select(db.auth_user.city).first().city
         local_races = db(db.races.locationName == userLocation).select()
         local_measures = db(db.measures.locationName == userLocation).select()
+        votes_races = db(db.votes_races.user_email == current_user).select()
+        votes_measures = db(db.votes_measures.user_email == current_user).select()
     return response.json(dict(
         current_user = current_user,
         national = national,
         state_races = state_races,
         state_measures = state_measures,
         local_races = local_races,
-        local_measures = local_measures
+        local_measures = local_measures,
+        votes_races = votes_races,
+        votes_measures = votes_measures
     ))
 
 #used to save a user's voting decisions
 @auth.requires_login()
 def update_votes():
+    user_election_info = db(db.votes_races.user_email == auth.user.email).select().first()
+    user_prop_info = db(db.votes_measures.user_email == auth.user.email).select().first()
+
+    if user_election_info is not None:
+        user_election_info.votes_json = request.vars.election_info
+        user_election_info.update_record()
+    else:
+        db.votes_races.insert(
+            user_email = auth.user.email,
+            votes_json = request.vars.election_info
+        )
+
+    if user_prop_info is not None:
+        user_prop_info.votes_json = request.vars.prop_info
+        user_prop_info.update_record()
+    else:
+        db.votes_measures.insert(
+            user_email = auth.user.email,
+            votes_json = request.vars.prop_info
+        )
+
     return dict()
 
 def user():
