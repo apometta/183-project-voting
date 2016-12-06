@@ -30,7 +30,9 @@ response.google_analytics_id = None
 
 response.menu = [
     (T('Home'), False, URL('default', 'index'), []),
-    (T('Check if you are registered'), False, 'http://www.sos.ca.gov/elections/registration-status/', [])
+    (T('Check if you are registered'), False, 'http://www.sos.ca.gov/elections/registration-status/', []),
+    (T('Where to vote'), False, 'http://www.sos.ca.gov/elections/polling-place', []),
+    (T('Voter rights'), False, 'http://www.sos.ca.gov/elections/voter-bill-rights/', [])
 ]
 
 if "auth" in locals():
