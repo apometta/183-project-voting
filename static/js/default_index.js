@@ -21,15 +21,26 @@ var app = function() {
 
     //function for formatting string list into an actual list of strings
     //this is a really ghetto solution but what works works
-    self.format_str_list = function(strlist1, strlist2) {
+    self.format_str_list = function(strlist1) {
+        var rawstr1 = strlist1;
+        rawstr1 = rawstr1.replace(/\|/g, "");
+        rawstr1 = rawstr1.replace(/'/g, "");
+        rawstr1 = rawstr1.replace(/\"/g, "");
+        rawstr1 = rawstr1.replace(", ", ",");
+        var strlist1 = rawstr1.split(",");
+        return strlist1;
+    }
+
+    //for two lists
+    self.format_str_list_two = function(strlist1, strlist2) {
         var rawstr1 = strlist1; var rawstr2 = strlist2;
         rawstr1 = rawstr1.replace(/\|/g, ""); rawstr2 = rawstr2.replace(/\|/g, "");
-        rawstr1 = rawstr1.replace(/'/g, ""); rawstr2 = rawstr2.replace(/\;/g, "");
+        rawstr1 = rawstr1.replace(/'/g, ""); rawstr2 = rawstr2.replace(/'/g, "");
         rawstr1 = rawstr1.replace(/\"/g, ""); rawstr2 = rawstr2.replace(/\"/g, "");
         rawstr1 = rawstr1.replace(", ", ","); rawstr2 = rawstr2.replace(", ", ",");
         var strlist1 = rawstr1.split(","); var strlist2 = rawstr2.split(",");
         for (var j = 0; j < strlist1.length; ++j){
-            strlist1[j] = strlist1[j] + "\n" + strlist2[j];
+            strlist1[j] = strlist1[j] + "\t(" + strlist2[j] + ")";
         }
         return strlist1;
     }
@@ -119,6 +130,7 @@ var app = function() {
             contains_vote: self.contains_vote,
             toggle_vote: self.toggle_vote,
             format_str_list: self.format_str_list,
+            format_str_list_two: self.format_str_list_two,
             format_office_str: self.format_office_str,
         }
 
