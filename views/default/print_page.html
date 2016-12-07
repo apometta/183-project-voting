@@ -1,10 +1,26 @@
 <!DOCTYPE html>
+<style>
+.vote_selection{
+    word-wrap: break-word;
+    text-align: left;
+    display: inline-block;
+}
+.quarter{
+    text-align: left;
+    width: 20%;
+}
+</style>
 <html lang="en">
-<div class="choice_list">
-    {{for v in voting_choices:}}
-        <div class="choice_line">
-            {{=v}}
-        </div>
-    {{pass}}
-</div>
+<body>
+    <div class="choice_list">
+        {{for idx, v in voting_choices.iteritems():}}
+            <div class="quarter vote_selection">
+                {{=idx}}:
+            </div>
+            <div class="vote_selection">
+                {{=v}}
+            </div> <br>
+        {{pass}}
+    </div>
+</body>
 </html>
