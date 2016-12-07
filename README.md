@@ -31,3 +31,16 @@ hardcoded in.  Separate database tables are used to store measures
 (propositions) and races (with candidates).  There are also two separate
 tables for storing which measures and races users have stored their votes for.
 Stored votes are, naturally, unique to each user, as well as their location.
+
+USAGE NOTES:
+* Despite asking for "city", either city our county works.  The only place that
+  demands a differentiation, from an eyeball view of the spreadsheet, is
+  San Luis Obispo, which had city propositions but no county named after it.
+  You'll probably get an error if you put it in, since the county is unknown
+  (in the best case, you just won't get county information).  Putting in
+  legitimate cities that had no city measures/races and aren't the names of
+  counties fails, since they are not in the database: just put in the county
+  name instead.
+* The print page is really basic, but it's only intention is to record the
+  answers.  It could be a lot prettier, but the mantra of this entire, fairly
+  ugly project is "it works".
